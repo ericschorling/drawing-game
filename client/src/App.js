@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import './App.css';
-
-const serverUrl ='http://localhost:3333'
+const database ='postgresql-colorful-23607'
+const serverUrl ='https://drawing-game-mintbean.herokuapp.com/'
 
 function App() {
   const [plantsJSON, setPlantsJSON] = useState([])
