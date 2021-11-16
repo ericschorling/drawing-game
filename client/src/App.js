@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import React, {useState} from 'react'
 import './App.css';
 
+const serverUrl ='http://localhost:3333'
+
 function App() {
+  const [plantsJSON, setPlantsJSON] = useState([])
+  const getJson = async () => {
+    const response = await fetch(`${serverUrl}/`)
+    const templates = await response.json()
+    await setPlantsJSON(templates)
+    console.log(plantsJSON)
+  }
+  const _handleClick=(e)=>{
+    e.preventDefault()
+    getJson()
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header >
+       <h1>Drawing Game</h1>
       </header>
+      <main>
+        <button onClick={(e)=>_handleClick(e)}>Click Me</button>
+      </main>
     </div>
   );
 }
